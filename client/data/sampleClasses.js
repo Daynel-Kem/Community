@@ -1,0 +1,123 @@
+// Sample classes data - will be replaced with backend data later
+export const sampleClasses = [
+	{
+		id: 1,
+		title: "Acrylic Painting for Beginners",
+		description:
+			"Learn the fundamentals of acrylic painting on canvas. Perfect for beginners who want to express their creativity through vibrant colors and techniques.",
+		capacity: 12,
+		price: 18.0,
+		location: "Art Studio Downtown, Main Gallery",
+		host: "Maria Sanchez",
+		date: "2026-03-15",
+		time: "10:00 AM - 12:00 PM",
+	},
+	{
+		id: 2,
+		title: "Handmade Jewelry Design",
+		description:
+			"Create beautiful jewelry pieces using beads, wires, and gemstones. Learn basic techniques for making necklaces, bracelets, and earrings.",
+		capacity: 10,
+		price: 22.0,
+		location: "Craft Center, Jewelry Workshop",
+		host: "Emma Thompson",
+		date: "2026-03-16",
+		time: "2:00 PM - 5:00 PM",
+	},
+	{
+		id: 3,
+		title: "Ceramics and Pottery",
+		description:
+			"Discover the art of working with clay. Learn hand-building techniques, glazing, and firing to create functional and decorative pottery pieces.",
+		capacity: 8,
+		price: 25.0,
+		location: "Pottery Studio, Wheel Room",
+		host: "David Chen",
+		date: "2026-03-17",
+		time: "9:00 AM - 12:00 PM",
+	},
+	{
+		id: 4,
+		title: "Watercolor Painting Workshop",
+		description:
+			"Master the delicate art of watercolor painting. Explore color mixing, brush techniques, and creating beautiful landscapes and florals.",
+		capacity: 15,
+		price: 20.0,
+		location: "Art Academy, Watercolor Studio",
+		host: "Lisa Rodriguez",
+		date: "2026-03-18",
+		time: "1:00 PM - 4:00 PM",
+	},
+	{
+		id: 5,
+		title: "Woodworking Basics",
+		description:
+			"Learn fundamental woodworking skills including measuring, cutting, sanding, and joining. Create your own wooden projects and furniture pieces.",
+		capacity: 6,
+		price: 28.0,
+		location: "Woodshop Community Center, Workshop A",
+		host: "James Wilson",
+		date: "2026-03-19",
+		time: "10:00 AM - 1:00 PM",
+	},
+	{
+		id: 6,
+		title: "Knitting and Textile Arts",
+		description:
+			"Explore the world of fiber arts including knitting, crocheting, and weaving. Create scarves, hats, and other wearable textile pieces.",
+		capacity: 14,
+		price: 15.0,
+		location: "Textile Studio, Fiber Arts Room",
+		host: "Sarah Johnson",
+		date: "2026-03-20",
+		time: "3:00 PM - 6:00 PM",
+	},
+	{
+		id: 7,
+		title: "Glass Bead Making",
+		description:
+			"Learn to create beautiful glass beads using a torch and glass rods. Design and make your own unique jewelry components.",
+		capacity: 8,
+		price: 24.0,
+		location: "Glass Arts Center, Torch Room",
+		host: "Mike Patterson",
+		date: "2026-03-21",
+		time: "9:00 AM - 12:00 PM",
+	},
+	{
+		id: 8,
+		title: "Calligraphy and Hand Lettering",
+		description:
+			"Master the art of beautiful handwriting and lettering. Learn various scripts, tools, and techniques for creating stunning calligraphy pieces.",
+		capacity: 12,
+		price: 19.0,
+		location: "Lettering Studio, Calligraphy Room",
+		host: "Nina Patel",
+		date: "2026-03-22",
+		time: "2:00 PM - 5:00 PM",
+	},
+	{
+		id: 9,
+		title: "Mixed Media Art",
+		description:
+			"Combine various art mediums including paint, collage, found objects, and more to create unique mixed media artworks and installations.",
+		capacity: 10,
+		price: 21.0,
+		location: "Contemporary Art Space, Mixed Media Studio",
+		host: "Alex Martinez",
+		date: "2026-03-23",
+		time: "10:00 AM - 1:00 PM",
+	},
+	{
+		id: 10,
+		title: "Sculpture with Clay",
+		description:
+			"Explore three-dimensional art through clay sculpture. Learn modeling techniques, texturing, and finishing methods for creating sculptures.",
+		capacity: 7,
+		price: 23.0,
+		location: "Sculpture Workshop, Modeling Studio",
+		host: "Rachel Green",
+		date: "2026-03-24",
+		time: "1:00 PM - 4:00 PM",
+	},
+];
