@@ -11,7 +11,8 @@ import {
 } from 'react-native';
 import { useRouter } from 'expo-router';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import {auth} from '../firebase/firebaseConfig'
+import { auth } from '../firebase/firebaseConfig';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function LoginScreen() {
   const router = useRouter();
@@ -32,12 +33,12 @@ export default function LoginScreen() {
       // TODO: Replace with Firebase Authentication
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       console.log(userCredential);
-      // Navigate to landing page on success
-      if (userCredential)
+      
+      // Navigate to landing page - permissions component will handle first-time setup
       router.replace('/landing');
     } catch (error) {
       setError('Failed to sign in');
-      console.log(error)
+      console.log(error);
     } finally {
       setLoading(false);
     }

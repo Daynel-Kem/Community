@@ -12,7 +12,8 @@ import {
 } from 'react-native';
 import { useRouter } from 'expo-router';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import {auth} from '../firebase/firebaseConfig'
+import { auth } from '../firebase/firebaseConfig';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 export default function SignupScreen() {
@@ -45,7 +46,8 @@ export default function SignupScreen() {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     //   await updateProfile(userCredential.user, { displayName: name });
       console.log(userCredential, "Success!");
-      // Navigate to landing page on success
+      
+      // Navigate to landing page - permissions component will handle first-time setup
       router.replace('/landing');
     } catch (error) {
         console.log(error)

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   StyleSheet,
   View,
@@ -6,18 +6,69 @@ import {
   ScrollView,
   TouchableOpacity,
   Dimensions,
+  ActivityIndicator,
+  Alert,
 } from 'react-native';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import { sampleClasses } from '../data/sampleClasses';
+import { getAuth } from 'firebase/auth';
+import BottomNavigation from '../components/bottom-navigation';
 
 const { width } = Dimensions.get('window');
 
 export default function ClassDetailsPage() {
   const router = useRouter();
   const { id } = useLocalSearchParams();
+  const [enrollLoading, setEnrollLoading] = useState(false);
 
   // Find the class by ID
   const classItem = sampleClasses.find(cls => cls.id === parseInt(id));
+
+  const handleEnroll = async () => {
+    setEnrollLoading(true);
+    try {
+      // Get current user ID from Firebase
+      const auth = getAuth();
+      const userId = auth.currentUser?.uid;
+
+      if (!userId) {
+        Alert.alert('Error', 'User not authenticated');
+        setEnrollLoading(false);
+        return;
+      }
+
+      // Log the enrollment data
+      console.log('Enrolling in class:', {
+        userId,
+        classId: classItem.id,
+        className: classItem.title,
+      });
+
+      // TODO: Call backend API when implemented
+      // Example API call (uncomment when backend is ready):
+      // const response = await fetch('http://localhost:5000/api/enroll', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify({ userId, classId: classItem.id }),
+      // });
+      // 
+      // if (!response.ok) {
+      //   throw new Error('Failed to enroll in class');
+      // }
+      // 
+      // const data = await response.json();
+      // console.log('Enrollment successful:', data);
+
+      Alert.alert('Success', `You have enrolled in ${classItem.title}!`);
+      setEnrollLoading(false);
+      // Optionally navigate back after successful enrollment
+      // router.back();
+    } catch (error) {
+      console.error('Enrollment error:', error);
+      Alert.alert('Error', 'Failed to enroll in class');
+      setEnrollLoading(false);
+    }
+  };
 
   if (!classItem) {
     return (
@@ -45,14 +96,15 @@ export default function ClassDetailsPage() {
   };
 
   return (
-    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+    <View style={styles.wrapper}>
+      <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
       {/* Header */}
       <View style={styles.header}>
         <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
           <Text style={styles.backButtonText}>← Back</Text>
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Class Details</Text>
-        <View style={{ width: 60 }} /> {/* Spacer for centering */}
+        <View style={{ width: 60 }} /> 
       </View>
 
       {/* Class Title and Price */}
@@ -143,8 +195,15 @@ export default function ClassDetailsPage() {
 
       {/* Enroll Button */}
       <View style={styles.enrollSection}>
-        <TouchableOpacity style={styles.enrollButton}>
-          <Text style={styles.enrollButtonText}>Enroll Now - {formatPrice(classItem.price)}</Text>
+        <TouchableOpacity
+          style={[styles.enrollButton, enrollLoading && styles.enrollButtonDisabled]}
+          onPress={handleEnroll}
+          disabled={enrollLoading}>
+          {enrollLoading ? (
+            <ActivityIndicator color="#fff" />
+          ) : (
+            <Text style={styles.enrollButtonText}>Enroll Now - {formatPrice(classItem.price)}</Text>
+          )}
         </TouchableOpacity>
         <Text style={styles.spotsLeft}>{classItem.capacity} spots available</Text>
       </View>
@@ -153,14 +212,21 @@ export default function ClassDetailsPage() {
       <View style={styles.footer}>
         <Text style={styles.footerText}>© 2026 Community Classes. All rights reserved.</Text>
       </View>
-    </ScrollView>
+      </ScrollView>
+      <BottomNavigation />
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+  wrapper: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
   container: {
     flex: 1,
     backgroundColor: '#fff',
+    paddingBottom: 70,
   },
   header: {
     flexDirection: 'row',
@@ -290,6 +356,9 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 18,
     fontWeight: 'bold',
+  },
+  enrollButtonDisabled: {
+    opacity: 0.6,
   },
   spotsLeft: {
     fontSize: 14,

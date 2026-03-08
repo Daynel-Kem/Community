@@ -11,6 +11,7 @@ export const sampleClasses = [
 		host: "Maria Sanchez",
 		date: "2026-03-15",
 		time: "10:00 AM - 12:00 PM",
+		tags: ["Painting", "Art", "Beginner"],
 	},
 	{
 		id: 2,
@@ -23,6 +24,7 @@ export const sampleClasses = [
 		host: "Emma Thompson",
 		date: "2026-03-16",
 		time: "2:00 PM - 5:00 PM",
+		tags: ["Jewelry", "Craft", "Design"],
 	},
 	{
 		id: 3,
@@ -35,6 +37,7 @@ export const sampleClasses = [
 		host: "David Chen",
 		date: "2026-03-17",
 		time: "9:00 AM - 12:00 PM",
+		tags: ["Ceramics", "Pottery", "Art"],
 	},
 	{
 		id: 4,
@@ -47,6 +50,7 @@ export const sampleClasses = [
 		host: "Lisa Rodriguez",
 		date: "2026-03-18",
 		time: "1:00 PM - 4:00 PM",
+		tags: ["Painting", "Watercolor", "Art"],
 	},
 	{
 		id: 5,
@@ -59,6 +63,7 @@ export const sampleClasses = [
 		host: "James Wilson",
 		date: "2026-03-19",
 		time: "10:00 AM - 1:00 PM",
+		tags: ["Woodworking", "Craft", "DIY"],
 	},
 	{
 		id: 6,
@@ -71,6 +76,7 @@ export const sampleClasses = [
 		host: "Sarah Johnson",
 		date: "2026-03-20",
 		time: "3:00 PM - 6:00 PM",
+		tags: ["Knitting", "Textile", "Craft"],
 	},
 	{
 		id: 7,
@@ -83,6 +89,7 @@ export const sampleClasses = [
 		host: "Mike Patterson",
 		date: "2026-03-21",
 		time: "9:00 AM - 12:00 PM",
+		tags: ["Glass", "Jewelry", "Craft"],
 	},
 	{
 		id: 8,
@@ -95,6 +102,7 @@ export const sampleClasses = [
 		host: "Nina Patel",
 		date: "2026-03-22",
 		time: "2:00 PM - 5:00 PM",
+		tags: ["Calligraphy", "Writing", "Art"],
 	},
 	{
 		id: 9,
@@ -107,6 +115,7 @@ export const sampleClasses = [
 		host: "Alex Martinez",
 		date: "2026-03-23",
 		time: "10:00 AM - 1:00 PM",
+		tags: ["Mixed Media", "Art", "Creative"],
 	},
 	{
 		id: 10,
@@ -119,5 +128,6 @@ export const sampleClasses = [
 		host: "Rachel Green",
 		date: "2026-03-24",
 		time: "1:00 PM - 4:00 PM",
+		tags: ["Sculpture", "Clay", "Art"],
 	},
 ];

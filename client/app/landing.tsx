@@ -4,204 +4,124 @@ import {
   View,
   Text,
   ScrollView,
-  TouchableOpacity,
-  Dimensions,
 } from 'react-native';
-import { useRouter } from 'expo-router';
-import { sampleClasses } from '../data/sampleClasses';
-
-const { width } = Dimensions.get('window');
+import BottomNavigation from '../components/bottom-navigation';
+import PermissionsComponent from '../components/PermissionsComponent';
 
 export default function LandingPage() {
-  const router = useRouter();
-
-  const handleLogout = () => {
-    router.replace('/login');
-  };
-
-  const formatPrice = (price) => {
-    return `$${price.toFixed(2)}`;
+  const handlePermissionsComplete = () => {
+    // Permissions completed, user can now use the app normally
+    console.log('Permissions setup completed');
   };
 
   return (
-    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
-      {/* Header */}
-      <View style={styles.header}>
-        <Text style={styles.headerTitle}>Community Classes</Text>
-        <TouchableOpacity onPress={handleLogout} style={styles.logoutButton}>
-          <Text style={styles.logoutText}>Logout</Text>
-        </TouchableOpacity>
-      </View>
+    <View style={styles.wrapper}>
+      <ScrollView style={styles.container}>
+        {/* Header */}
+        <View style={styles.header}>
+          <Text style={styles.headerTitle}>Welcome to Community</Text>
+        </View>
 
-      {/* Classes List */}
-      <View style={styles.classesContainer}>
-        <Text style={styles.sectionTitle}>Available Classes</Text>
-
-        {sampleClasses.map((classItem) => (
-          <View key={classItem.id} style={styles.classCard}>
-            <View style={styles.classHeader}>
-              <Text style={styles.classTitle}>{classItem.title}</Text>
-              <Text style={styles.classPrice}>{formatPrice(classItem.price)}</Text>
-            </View>
-
-            <Text style={styles.classDescription}>{classItem.description}</Text>
-
-            <View style={styles.classDetails}>
-              <View style={styles.detailRow}>
-                <Text style={styles.detailLabel}>� Date:</Text>
-                <Text style={styles.detailValue}>{classItem.date}</Text>
-              </View>
-
-              <View style={styles.detailRow}>
-                <Text style={styles.detailLabel}>⏰ Time:</Text>
-                <Text style={styles.detailValue}>{classItem.time}</Text>
-              </View>
-
-              <View style={styles.detailRow}>
-                <Text style={styles.detailLabel}>�👥 Capacity:</Text>
-                <Text style={styles.detailValue}>{classItem.capacity} students</Text>
-              </View>
-
-              <View style={styles.detailRow}>
-                <Text style={styles.detailLabel}>📍 Location:</Text>
-                <Text style={styles.detailValue}>{classItem.location}</Text>
-              </View>
-
-              <View style={styles.detailRow}>
-                <Text style={styles.detailLabel}>👨‍🏫 Host:</Text>
-                <Text style={styles.detailValue}>{classItem.host}</Text>
-              </View>
-            </View>
-
-            <TouchableOpacity style={styles.enrollButton} onPress={() => router.push(`/class-details?id=${classItem.id}`)}>
-              <Text style={styles.enrollButtonText}>Enroll Now</Text>
-            </TouchableOpacity>
+        {/* Content */}
+        <View style={styles.contentContainer}>
+          <View style={styles.welcomeCard}>
+            <Text style={styles.welcomeIcon}>🏠</Text>
+            <Text style={styles.welcomeTitle}>Welcome Home</Text>
+            <Text style={styles.welcomeText}>
+              This is the main landing page of the Community app. Here you can access all the features and navigate to different sections.
+            </Text>
           </View>
-        ))}
-      </View>
 
-      {/* Footer */}
-      <View style={styles.footer}>
-        <Text style={styles.footerText}>© 2026 Community Classes. All rights reserved.</Text>
-      </View>
-    </ScrollView>
+          <View style={styles.featureCard}>
+            <Text style={styles.cardTitle}>Quick Actions</Text>
+            <Text style={styles.bulletPoint}>• Browse and search for classes</Text>
+            <Text style={styles.bulletPoint}>• View your upcoming classes</Text>
+            <Text style={styles.bulletPoint}>• Connect with partners</Text>
+            <Text style={styles.bulletPoint}>• Manage your account</Text>
+          </View>
+
+          <View style={styles.featureCard}>
+            <Text style={styles.cardTitle}>Getting Started</Text>
+            <Text style={styles.cardText}>
+              Use the navigation bar at the bottom to explore different sections of the app. Start by finding classes that interest you!
+            </Text>
+          </View>
+        </View>
+      </ScrollView>
+      <BottomNavigation />
+      <PermissionsComponent onComplete={handlePermissionsComplete} />
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  wrapper: {
     flex: 1,
     backgroundColor: '#fff',
   },
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    paddingBottom: 70,
+  },
   header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingHorizontal: 20,
+    padding: 20,
     paddingTop: 60,
-    paddingBottom: 20,
     backgroundColor: '#f8f9fa',
   },
   headerTitle: {
-    fontSize: 20,
+    fontSize: 28,
     fontWeight: 'bold',
     color: '#333',
   },
-  logoutButton: {
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    backgroundColor: '#007AFF',
-    borderRadius: 6,
-  },
-  logoutText: {
-    color: '#fff',
-    fontSize: 14,
-    fontWeight: '600',
-  },
-  classesContainer: {
+  contentContainer: {
     padding: 20,
+    paddingBottom: 100,
   },
-  sectionTitle: {
+  welcomeCard: {
+    backgroundColor: '#f8f9fa',
+    borderRadius: 12,
+    padding: 24,
+    marginBottom: 20,
+    alignItems: 'center',
+  },
+  welcomeIcon: {
+    fontSize: 64,
+    marginBottom: 16,
+  },
+  welcomeTitle: {
     fontSize: 24,
     fontWeight: 'bold',
     color: '#333',
-    marginBottom: 20,
+    marginBottom: 12,
   },
-  classCard: {
+  welcomeText: {
+    fontSize: 16,
+    color: '#666',
+    textAlign: 'center',
+    lineHeight: 24,
+  },
+  featureCard: {
     backgroundColor: '#f8f9fa',
     borderRadius: 12,
     padding: 20,
     marginBottom: 16,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 3.84,
-    elevation: 5,
   },
-  classHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
-    marginBottom: 12,
-  },
-  classTitle: {
+  cardTitle: {
     fontSize: 18,
     fontWeight: 'bold',
     color: '#333',
-    flex: 1,
-    marginRight: 12,
+    marginBottom: 12,
   },
-  classPrice: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#007AFF',
+  bulletPoint: {
+    fontSize: 14,
+    color: '#666',
+    marginBottom: 8,
+    lineHeight: 20,
   },
-  classDescription: {
+  cardText: {
     fontSize: 14,
     color: '#666',
     lineHeight: 20,
-    marginBottom: 16,
-  },
-  classDetails: {
-    marginBottom: 16,
-  },
-  detailRow: {
-    flexDirection: 'row',
-    marginBottom: 8,
-  },
-  detailLabel: {
-    fontSize: 14,
-    fontWeight: '600',
-    color: '#333',
-    width: 80,
-  },
-  detailValue: {
-    fontSize: 14,
-    color: '#666',
-    flex: 1,
-  },
-  enrollButton: {
-    backgroundColor: '#007AFF',
-    paddingVertical: 12,
-    paddingHorizontal: 24,
-    borderRadius: 8,
-    alignItems: 'center',
-  },
-  enrollButtonText: {
-    color: '#fff',
-    fontSize: 16,
-    fontWeight: '600',
-  },
-  footer: {
-    padding: 20,
-    alignItems: 'center',
-    backgroundColor: '#f8f9fa',
-  },
-  footerText: {
-    color: '#666',
-    fontSize: 14,
   },
 });
